@@ -15,7 +15,8 @@ When you have finished all of the questions - open a pull request with your answ
 
 ## Task
 
-1. Create a new database called `cyf_classes` (hint: use `createdb` in the terminal)
+1. Create a new database called `cyf_classes` (hint: use `create
+db` in the terminal)
 2. Create a new table `mentors`, for each mentor we want to save their name, how many years they lived in Glasgow, their address and their favourite programming language.
 3. Insert 5 mentors in the `mentors` table (you can make up the data, it doesn't need to be accurate ;-)).
 4. Create a new table `students`, for each student we want to save their name, address and if they have graduated from Code Your Future.

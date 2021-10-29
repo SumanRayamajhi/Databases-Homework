@@ -1,0 +1,87 @@
+-- TABLE FOR MENTORS
+create table mentors (
+  id                           SERIAL PRIMARY KEY,
+  name                         VARCHAR(30) NOT NULL,
+  email                        VARCHAR(120) NOT NULL,
+  address                       
+  yearsLivingInGasgow          VARCHAR(20),
+  favouriteProgrammingLanguage VARCHAR(100)
+);
+
+-- INSERT DATA IN MENTORS TABLE
+insert into mentors (name, email, yearsLivingInGasgow, favouriteProgrammingLanguage) values ('Eduard Bargues', 'eduard@gamil.com', '15 years', 'Pascal Language');
+insert into mentors (name, email, yearsLivingInGasgow, favouriteProgrammingLanguage) values ('Anandamaya Arno', 'ananda@gamil.com', '5 years', 'Javascript Language');
+insert into mentors (name, email, yearsLivingInGasgow, favouriteProgrammingLanguage) values ('Frederico Rhae', 'rhae@gamil.com', '2 years', 'PHP Language');
+insert into mentors (name, email, yearsLivingInGasgow, favouriteProgrammingLanguage) values ('Yonah Forst', 'yonah@gamil.com', '2 years', 'Pascal Language');
+insert into mentors (name, email, yearsLivingInGasgow, favouriteProgrammingLanguage) values ('William Gomes', 'william@gamil.com', '5 years', 'Javascript Language');
+
+
+-- create table for students 
+create table students (
+id    serial primary key,
+name  varchar(30) not null,
+address varchar(50) not null,
+graduated varchar(20) not null
+);
+
+--insert data in students 
+insert into students (name, address, graduated) values ('John Doe', 'Gracia', 'Not Yet');
+insert into students (name, address, graduated) values ('Harry Porter', 'Poblo Sec', 'Graduated');
+insert into students (name, address, graduated) values ('John Smith', 'Poblo Sec', 'Not Yet');
+insert into students (name, address, graduated) values ('Eli Pli', 'Gracia', 'Graduated');
+insert into students (name, address, graduated) values ('Mria Jose', 'Catalonia', 'Not Yet');
+insert into students (name, address, graduated) values ('Piter Parker', 'Catalonia', 'Graduated');
+insert into students (name, address, graduated) values ('Ava Cava', 'Gracia', 'Graduated');
+insert into students (name, address, graduated) values ('Emma Temma', 'Gracia', 'Not Yet');
+insert into students (name, address, graduated) values ('Oliver Boliver', 'Gracia', 'Not Yet');
+insert into students (name, address, graduated) values ('Liam Beck', 'Gracia', 'Not Yet');
+
+-- TABLE FOR classes
+create table classes (
+  id                           SERIAL PRIMARY KEY,
+  mentor                       INT references  mentors(id),
+  class_topic                  VARCHAR(120) NOT NULL,
+  location                     VARCHAR(20),
+  date                         VARCHAR(100)
+);
+
+--insert values in classes table
+insert into classes (mentor, class_topic, location, date) values (1, 'database', 'Glasgow', '2021-10-27');
+insert into classes (mentor, class_topic, location, date) values (2, 'Javascript', 'Glasgow', '2021-07-27');
+insert into classes (mentor, class_topic, location, date) values (4, 'React', 'Glasgow', '2021-08-27');
+insert into classes (mentor, class_topic, location, date) values (3, 'Terminal', 'Glasgow', '2021-04-27');
+insert into classes (mentor, class_topic, location, date) values (5, 'Javascript', 'Glasgow', '2021-06-27');
+
+--create table for students attends a specific class
+create table students_addending_classes (
+id              SERIAL primary key,
+students_id     INT references students(id),
+classes_id      INT references students(id)
+);
+
+--insert values in students attends a specific class
+insert into students_addending_classes (students_id, classes_id) values (1, 2);
+insert into students_addending_classes (students_id, classes_id) values (2, 2);
+insert into students_addending_classes (students_id, classes_id) values (3, 1);
+insert into students_addending_classes (students_id, classes_id) values (4, 3);
+insert into students_addending_classes (students_id, classes_id) values (5, 1);
+insert into students_addending_classes (students_id, classes_id) values (6, 2);
+insert into students_addending_classes (students_id, classes_id) values (7, 4);
+insert into students_addending_classes (students_id, classes_id) values (8, 5);
+insert into students_addending_classes (students_id, classes_id) values (9, 5);
+insert into students_addending_classes (students_id, classes_id) values (10, 4);
+
+--1.Retrieve all the mentors who lived more than 5 years in Glasgow
+select * from mentors where yearsLivingInGasgow > '5';
+
+--2.Retrieve all the mentors whose favourite language is Javascript
+select * from mentors where favouriteProgrammingLanguage='Javascript Language'
+
+--3.Retrieve all the students who are CYF graduates
+select * from students where graduated='Graduated'
+
+--4.Retrieve all the classes taught before June this year
+select * from classes where date < '2021-06-21'
+
+--5.Retrieve all the students (retrieving student ids only is fine) who attended the Javascript class (or any other class that you have in the `classes` table).
+select * from  students_addending_classes
