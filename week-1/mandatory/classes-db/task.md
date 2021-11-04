@@ -151,5 +151,5 @@ select * from students_addending_classes
     - Retrieve all the students (retrieving student ids only is fine) who attended the
       Javascript class (or any other class that you have in the `classes` table).
     ```sql
-    select * from  students_addending_classes
+    select students_id from  students_addending_classes where classes_id=2 or classes_id=5
     ```
