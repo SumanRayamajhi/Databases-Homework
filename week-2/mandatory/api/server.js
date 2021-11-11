@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 const { Pool } = require("pg");
-const secrets = require("secrets.json");
-const pool = new Pool(secrets);
+const secrets = require("./secrets.json");
+const connection = new Pool(secrets);
 
 app.get("/customers", (req, res) => {
   connection.query("select * from customers", (error, result) => {
