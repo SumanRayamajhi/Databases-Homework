@@ -120,15 +120,24 @@ inner join suppliers s on s.id = p.supplier_id
 where p.product_name like '% Cup' or p.product_name like 'Cup %'
 
 --Add a new GET endpoint `/customers/:customerId` to load a single customer by ID.
-select c.id from customers c
+select * from customers where id=1
+
+--Add a new POST endpoint `/products` to create a new product (with a product name, 
+--a price and a supplier id). Check that the price is a positive integer and that the 
+--supplier ID exists in the database, otherwise return an error.
+select product_name, unit_price, supplier_id from products
 
 --Add a new POST endpoint `/customers/:customerId/orders` to create a new order 
 --(including an order date, and an order reference) for a customer. Check that the customerId 
 --corresponds to an existing customer or return an error.
 select o.order_date, o.order_reference from orders o 
 inner join customers c on c.id=o.customer_id
+where c.id=2
 
-select * from orders
+--Add a new PUT endpoint `/customers/:customerId` to update an existing customer 
+--(name, address, city and country).
+select name, address, city, country from customers where id=1
+
 
 --- Add a new GET endpoint `/customers/:customerId/orders` to load all the orders along the 
 --items in the orders of a specific customer. Especially, the following information should 
